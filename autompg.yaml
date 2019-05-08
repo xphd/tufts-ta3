@@ -67,7 +67,10 @@ spec:
     - name: tufts-ta3
       imagePullPolicy: Always
       image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:autompg
-      command: [./ta3_search]
+      command:
+        [
+          bash ta3_search shared/static/config_files/dev_mode/example_dev_regression_config.json,
+        ]
       args:
         - dataset:__direct__
       volumeMounts:
