@@ -5,7 +5,7 @@ metadata:
   labels:
     app: tufts-autompg
 spec:
-  loadBalancerIP: 10.108.25.34
+  loadBalancerIP: 10.108.25.33
   type: LoadBalancer
   ports:
     - name: http
@@ -66,7 +66,7 @@ spec:
     # TUFTS TA3
     - name: tufts-ta3
       imagePullPolicy: Always
-      image: registry.datadrivendiscovery.org/cliu/tufts-ta3-winter-19-demo:latest
+      image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:autompg
       command:
         [
           ./ta3_search shared/static/config_files/dev_mode/example_dev_regression_config.json,
