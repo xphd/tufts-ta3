@@ -1,0 +1,107 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tufts-baseball
+  labels:
+    app: tufts-baseball
+spec:
+  loadBalancerIP: 10.108.25.33
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: tufts-baseball
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tufts-baseball
+  labels:
+    app: tufts-baseball
+spec:
+  restartPolicy: Never
+  containers:
+    - name: isi-ta2
+      imagePullPolicy: Always
+      image: registry.datadrivendiscovery.org/ta2-submissions/ta2-isi/ta3ta2/ta3ta2-image
+      env:
+        - name: D3MRUN
+          value: "ta2ta3"
+        - name: D3MINPUTDIR
+          value: "/input"
+        - name: D3MOUTPUTDIR
+          value: "/output"
+        - name: D3MSTATICDIR
+          value: "/static"
+        - name: D3MPROBLEMPATH
+          value: "/input/TRAIN/problem_TRAIN/problemDoc.json"
+        - name: D3MLOCALDIR
+          value: "/output/D3MLOCALDIR"
+        - name: D3MCPU
+          value: "8"
+        - name: D3MRAM
+          value: "56Gi"
+        - name: D3MTIMEOUT
+          value: "600"
+      volumeMounts:
+        - name: input-vol
+          mountPath: /input
+          readOnly: true
+        - name: output-vol
+          mountPath: /output
+          readOnly: false
+        - name: static-data
+          mountPath: /static
+          readOnly: true
+      resources:
+        requests:
+          memory: 25Gi
+          cpu: 6
+      ports:
+        - containerPort: 45042
+          hostPort: 45042
+    # TUFTS TA3
+    - name: tufts-ta3
+      imagePullPolicy: Always
+      image: registry.datadrivendiscovery.org/cliu/tufts-ta3-winter-19-demo:latest
+      command:
+        [
+          ./ta3_search shared/static/config_files/dev_mode/example_dev_regression_config.json,
+        ]
+      args:
+        - dataset:__direct__
+      volumeMounts:
+        - name: input-vol
+          mountPath: /input
+          readOnly: true
+        - name: output-vol
+          mountPath: /output
+          readOnly: false
+      ports:
+        - name: http
+          containerPort: 8080
+      resources:
+        requests:
+          # that's what we've been testing on:
+          memory: 5Gi
+          cpu: 1
+      env:
+        - name: TA2_PORT
+          value: "45042"
+  imagePullSecrets:
+    - name: regcred-cl
+  volumes:
+    - name: static-data
+      hostPath:
+        path: /opt/static_files/
+        type: Directory
+    - name: input-vol
+      hostPath:
+        path: /opt/datasets/seed_datasets_current/185_baseball
+        type: Directory
+    - name: output-vol
+      persistentVolumeClaim:
+        claimName: eval-output-pv-claim
