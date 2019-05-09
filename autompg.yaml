@@ -69,7 +69,7 @@ spec:
       image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:winter-19-demo
       command: [./ta3_search]
       args:
-        - ./shared/static/config_files/dev_mode/example_dev_regression_config.json
+        - shared/static/config_files/dev_mode/example_dev_regression_config.json
       # volumeMounts:
       #   - name: input-vol
       #     mountPath: /input
