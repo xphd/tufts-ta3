@@ -70,13 +70,13 @@ spec:
       command: [./ta3_search]
       args:
         - shared/static/config_files/dev_mode/example_dev_regression_config.json
-      # volumeMounts:
-      #   - name: input-vol
-      #     mountPath: /input
-      #     readOnly: true
-      #   - name: output-vol
-      #     mountPath: /output
-      #     readOnly: false
+      volumeMounts:
+        - name: input-vol
+          mountPath: /input
+          readOnly: true
+        - name: output-vol
+          mountPath: /output
+          readOnly: false
       ports:
         - name: http
           containerPort: 8080
@@ -90,15 +90,15 @@ spec:
       #     value: "45042"
   imagePullSecrets:
     - name: regcred-cl
-  # volumes:
-  #   - name: static-data
-  #     hostPath:
-  #       path: /opt/static_files/
-  #       type: Directory
-  #   - name: input-vol
-  #     hostPath:
-  #       path: /opt/datasets/seed_datasets_current/196_autoMpg
-  #       type: Directory
-  #   - name: output-vol
-  #     persistentVolumeClaim:
-  #       claimName: eval-output-pv-claim
+  volumes:
+    - name: static-data
+      hostPath:
+        path: /opt/static_files/
+        type: Directory
+    - name: input-vol
+      hostPath:
+        path: /opt/datasets/seed_datasets_current/196_autoMpg
+        type: Directory
+    - name: output-vol
+      persistentVolumeClaim:
+        claimName: eval-output-pv-claim
