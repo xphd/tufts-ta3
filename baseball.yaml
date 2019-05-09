@@ -71,8 +71,8 @@ spec:
         [
           ./ta3_search shared/static/config_files/dev_mode/example_dev_classification_config.json,
         ]
-      args:
-        - dataset:__direct__
+      # args:
+      #   - dataset:__direct__
       volumeMounts:
         - name: input-vol
           mountPath: /input
