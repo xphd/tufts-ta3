@@ -71,13 +71,13 @@ spec:
       args:
         - shared/static/config_files/dev_mode/example_dev_regression_config.json
         # - dataset:__direct__
-      volumeMounts:
-        - name: input-vol
-          mountPath: /input
-          readOnly: true
-        - name: output-vol
-          mountPath: /output
-          readOnly: false
+      # volumeMounts:
+      #   - name: input-vol
+      #     mountPath: /input
+      #     readOnly: true
+      #   - name: output-vol
+      #     mountPath: /output
+      #     readOnly: false
       ports:
         - name: http
           containerPort: 8080
@@ -86,20 +86,20 @@ spec:
           # that's what we've been testing on:
           memory: 5Gi
           cpu: 1
-      env:
-        - name: TA2_PORT
-          value: "45042"
+      # env:
+      #   - name: TA2_PORT
+      #     value: "45042"
   imagePullSecrets:
     - name: regcred-cl
-  volumes:
-    - name: static-data
-      hostPath:
-        path: /opt/static_files/
-        type: Directory
-    - name: input-vol
-      hostPath:
-        path: /opt/datasets/seed_datasets_current/196_autoMpg
-        type: Directory
-    - name: output-vol
-      persistentVolumeClaim:
-        claimName: eval-output-pv-claim
+  # volumes:
+  #   - name: static-data
+  #     hostPath:
+  #       path: /opt/static_files/
+  #       type: Directory
+  #   - name: input-vol
+  #     hostPath:
+  #       path: /opt/datasets/seed_datasets_current/196_autoMpg
+  #       type: Directory
+  #   - name: output-vol
+  #     persistentVolumeClaim:
+  #       claimName: eval-output-pv-claim
