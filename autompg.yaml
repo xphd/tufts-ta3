@@ -91,15 +91,15 @@ spec:
       #     value: "45042"
   imagePullSecrets:
     - name: regcred-cl
-  # volumes:
-  #   - name: static-data
-  #     hostPath:
-  #       path: /opt/static_files/
-  #       type: Directory
-  #   - name: input-vol
-  #     hostPath:
-  #       path: /opt/datasets/seed_datasets_current/196_autoMpg
-  #       type: Directory
-  #   - name: output-vol
-  #     persistentVolumeClaim:
-  #       claimName: eval-output-pv-claim
+  volumes:
+    - name: static-data
+      hostPath:
+        path: /opt/static_files/
+        type: Directory
+    - name: input-vol
+      hostPath:
+        path: /opt/datasets/seed_datasets_current/196_autoMpg
+        type: Directory
+    - name: output-vol
+      persistentVolumeClaim:
+        claimName: eval-output-pv-claim
