@@ -70,14 +70,13 @@ spec:
       command: [./ta3_search]
       args:
         - shared/static/config_files/dev_mode/example_dev_regression_config.json
-        # - dataset:__direct__
-      # volumeMounts:
-      #   - name: input-vol
-      #     mountPath: /input
-      #     readOnly: true
-      #   - name: output-vol
-      #     mountPath: /output
-      #     readOnly: false
+      volumeMounts:
+        - name: input-vol
+          mountPath: /input
+          readOnly: true
+        - name: output-vol
+          mountPath: /output
+          readOnly: false
       ports:
         - name: http
           containerPort: 8080
