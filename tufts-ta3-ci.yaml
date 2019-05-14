@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: tufts-baseball
+  name: tufts-ta3-ci
   labels:
-    app: tufts-baseball
+    app: tufts-ta3-ci
 spec:
   loadBalancerIP: 10.108.25.34
   type: LoadBalancer
@@ -13,4 +13,4 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app: tufts-baseball
+    app: tufts-ta3-ci
