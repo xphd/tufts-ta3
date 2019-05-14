@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tufts-ta3-ci
-  labels:
-    app: tufts-ta3-ci
+  name: ta2  
 spec:
   restartPolicy: Never
   imagePullSecrets:
