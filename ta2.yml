@@ -23,7 +23,7 @@ spec:
   containers:
     - name: isi-ta2
       imagePullPolicy: Always
-      image: registry.datadrivendiscovery.org/ta2-submissions/ta2-isi/ta3ta2/ta3ta2-image
+      image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-image:latest
       env:
         - name: D3MRUN
           value: "ta2ta3"
