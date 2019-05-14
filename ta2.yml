@@ -1,5 +1,5 @@
 apiVersion: v1
-kind: Pod
+kind: Deployment
 metadata:
   name: ta2  
   labels:
@@ -59,5 +59,5 @@ spec:
           cpu: 6
       ports:
         - containerPort: 45042
-          hostPort: 45042
+          # hostPort: 45042
   

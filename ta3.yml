@@ -37,6 +37,8 @@ spec:
       ports:
         - name: http
           containerPort: 8080
+        - name: ta2
+          containerPort: 45042
       resources:
         requests:
           # that's what we've been testing on:

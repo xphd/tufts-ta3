@@ -12,5 +12,9 @@ spec:
       port: 8080
       protocol: TCP
       targetPort: 8080
+    - name: grpc
+      port: 45042
+      protocol: TCP
+      targetPort: 45042
   selector:
     app: tufts-ta3-ci
