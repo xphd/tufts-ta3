@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-ta3
+  labels:
+    role: ta3
+spec:
+  restartPolicy: Never
+  containers:
+  - name: main
+    image: registry.gitlab.com/datadrivendiscovery/simple-ta3/simple-ta3:latest
+    imagePullPolicy: IfNotPresent
+    ports:
+    - name: http
+      containerPort: 80
+    env:
+    - name: D3MCPU
+      valueFrom:
+        resourceFieldRef:
+          containerName: main
+          resource: limits.cpu
+    - name: D3MRAM
+      valueFrom:
+        resourceFieldRef:
+          containerName: main
+          resource: limits.memory
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+  - name: envoy
+    image: registry.gitlab.com/datadrivendiscovery/simple-ta3/envoy
+    imagePullPolicy: IfNotPresent
+    ports:
+    - name: envoy
+      containerPort: 8080
+    env:
+    - name: TA2_HOST
+      value: "ta2"
+    - name: TA2_PORT
+      value: "45042"
+    - name: D3MCPU
+      valueFrom:
+        resourceFieldRef:
+          containerName: envoy
+          resource: limits.cpu
+    - name: D3MRAM
+      valueFrom:
+        resourceFieldRef:
+          containerName: envoy
+          resource: limits.memory
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi

@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: simple-ta3-tests
+spec:
+  template:
+    metadata:
+      labels:
+        role: tests
+    spec:
+      restartPolicy: Never
+      initContainers:
+      # This container waits for TA2 to be ready (replies to "hello" call) before
+      # exiting, after which tests container runs.
+      - name: wait-ta2
+        image: registry.gitlab.com/datadrivendiscovery/simple-ta3/wait:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TA2_HOST
+          value: "ta2"
+        - name: TA2_PORT
+          value: "45042"
+        - name: WAIT_TIMEOUT
+          value: "300"
+      containers:
+      # This image waits for TA3 to be ready (responds to a HTTP request)
+      # before starting tests, as part of the "test-ci" NPM command.
+      - name: tests
+        image: registry.gitlab.com/datadrivendiscovery/simple-ta3/tests:latest
+        imagePullPolicy: IfNotPresent
+        command: ["npm", "run", "test-ci"]
+        env:
+        - name: TA3_URL
+          value: "http://ta3"
+        volumeMounts:
+        - name: test-results
+          mountPath: /tests/cypress/results
+          readOnly: false
+  backoffLimit: 0
