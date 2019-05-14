@@ -58,6 +58,7 @@ spec:
           memory: 25Gi
           cpu: 6
       ports:
-        - containerPort: 45042
+        - name: ta2
+          containerPort: 45042
           # hostPort: 45042
   
