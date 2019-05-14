@@ -1,11 +1,25 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tufts-baseball
+  name: tufts-ta3-ci
   labels:
-    app: tufts-baseball
+    app: tufts-ta3-ci
 spec:
   restartPolicy: Never
+  imagePullSecrets:
+    - name: regcred-cl
+  volumes:
+    - name: static-data
+      hostPath:
+        path: /opt/static_files/
+        type: Directory
+    - name: input-vol
+      hostPath:
+        path: /opt/datasets/seed_datasets_current/196_autoMpg
+        type: Directory
+    - name: output-vol
+      persistentVolumeClaim:
+        claimName: eval-output-pv-claim
   containers:
     - name: isi-ta2
       imagePullPolicy: Always
@@ -46,3 +60,4 @@ spec:
       ports:
         - containerPort: 45042
           hostPort: 45042
+  
