@@ -22,7 +22,7 @@ metadata:
   labels:
     app: tufts-autompg
 spec:
-  restartPolicy: Always
+  restartPolicy: Never
   containers:
     # - name: isi-ta2
     #   imagePullPolicy: Always
@@ -66,7 +66,7 @@ spec:
     # TUFTS TA3
     - name: tufts-ta3
       imagePullPolicy: Always
-      image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:winter-19-demo-may
+      image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:winter-19-demo
       command: [./ta3_search]
       args:
         - shared/static/config_files/dev_mode/example_dev_regression_config.json
