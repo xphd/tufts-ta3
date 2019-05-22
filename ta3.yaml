@@ -1,4 +1,3 @@
-
 ---
 apiVersion: v1
 kind: Service
@@ -58,8 +57,12 @@ spec:
         readOnly: true
     resources:
       requests:
-        memory: 56Gi
-        cpu: 8
+        memory: 10Gi
+        cpu: 4
+    ports:
+      - containerPort: 45042
+        hostPort: 45042
+
   - name: ta3-container
     image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/may2019:latest
     imagePullPolicy: Always
@@ -81,13 +84,12 @@ spec:
         readOnly: true    
     resources:
       requests:
-        memory: 5Gi
+        memory: 2Gi
         cpu: 1
     ports:
       - name: http
         containerPort: 8080
-#...[add more containers if needed]
- 
+#...[add more containers if needed] 
  
   imagePullSecrets:
   - name: regcred-cl
