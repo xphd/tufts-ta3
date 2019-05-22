@@ -68,7 +68,7 @@ spec:
     # TUFTS TA3
     - name: tufts-ta3
       imagePullPolicy: Always
-      image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:dry-run-may
+      image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/may2019:latest
       command: [./ta3_search]
       args:
         - dataset:__direct__
