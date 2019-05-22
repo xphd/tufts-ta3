@@ -46,6 +46,8 @@ spec:
           value: "56Gi"
         - name: D3MTIMEOUT
           value: "600"
+        - name: D3MCONTEXT
+          value: "EVALUATION"
       volumeMounts:
         - name: input-vol
           mountPath: /input
