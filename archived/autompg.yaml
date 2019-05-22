@@ -24,45 +24,45 @@ metadata:
 spec:
   restartPolicy: Never
   containers:
-    # - name: isi-ta2
-    #   imagePullPolicy: Always
-    #   image: registry.datadrivendiscovery.org/ta2-submissions/ta2-isi/ta3ta2/ta3ta2-image
-    #   env:
-    #     - name: D3MRUN
-    #       value: "ta2ta3"
-    #     - name: D3MINPUTDIR
-    #       value: "/input"
-    #     - name: D3MOUTPUTDIR
-    #       value: "/output"
-    #     - name: D3MSTATICDIR
-    #       value: "/static"
-    #     - name: D3MPROBLEMPATH
-    #       value: "/input/TRAIN/problem_TRAIN/problemDoc.json"
-    #     - name: D3MLOCALDIR
-    #       value: "/output/D3MLOCALDIR"
-    #     - name: D3MCPU
-    #       value: "8"
-    #     - name: D3MRAM
-    #       value: "56Gi"
-    #     - name: D3MTIMEOUT
-    #       value: "600"
-    #   volumeMounts:
-    #     - name: input-vol
-    #       mountPath: /input
-    #       readOnly: true
-    #     - name: output-vol
-    #       mountPath: /output
-    #       readOnly: false
-    #     - name: static-data
-    #       mountPath: /static
-    #       readOnly: true
-    #   resources:
-    #     requests:
-    #       memory: 25Gi
-    #       cpu: 6
-    #   ports:
-    #     - containerPort: 45042
-    #       hostPort: 45042
+    - name: isi-ta2
+      imagePullPolicy: Always
+      image: registry.datadrivendiscovery.org/ta2-submissions/ta2-isi/ta3ta2/ta3ta2-image
+      env:
+        - name: D3MRUN
+          value: "ta2ta3"
+        - name: D3MINPUTDIR
+          value: "/input"
+        - name: D3MOUTPUTDIR
+          value: "/output"
+        - name: D3MSTATICDIR
+          value: "/static"
+        - name: D3MPROBLEMPATH
+          value: "/input/TRAIN/problem_TRAIN/problemDoc.json"
+        - name: D3MLOCALDIR
+          value: "/output/D3MLOCALDIR"
+        - name: D3MCPU
+          value: "8"
+        - name: D3MRAM
+          value: "56Gi"
+        - name: D3MTIMEOUT
+          value: "600"
+      volumeMounts:
+        - name: input-vol
+          mountPath: /input
+          readOnly: true
+        - name: output-vol
+          mountPath: /output
+          readOnly: false
+        - name: static-data
+          mountPath: /static
+          readOnly: true
+      resources:
+        requests:
+          memory: 25Gi
+          cpu: 6
+      ports:
+        - containerPort: 45042
+          hostPort: 45042
     # TUFTS TA3
     - name: tufts-ta3
       imagePullPolicy: Always
@@ -85,9 +85,9 @@ spec:
           # that's what we've been testing on:
           memory: 5Gi
           cpu: 1
-      # env:
-      #   - name: TA2_PORT
-      #     value: "45042"
+      env:
+        - name: TA2_PORT
+          value: "45042"
   imagePullSecrets:
     - name: regcred-cl
   volumes:
