@@ -49,10 +49,10 @@ spec:
         - name: D3MCONTEXT
           value: "EVALUATION"
       volumeMounts:
-        - name: input-vol
+        - name: input-data
           mountPath: /input
           readOnly: true
-        - name: output-vol
+        - name: output-data
           mountPath: /output
           readOnly: false
         - name: static-data
@@ -73,10 +73,10 @@ spec:
       args:
         - dataset:__direct__
       volumeMounts:
-        - name: input-vol
+        - name: input-data
           mountPath: /input
           readOnly: true
-        - name: output-vol
+        - name: output-data
           mountPath: /output
           readOnly: false
       ports:
@@ -97,10 +97,10 @@ spec:
       hostPath:
         path: /opt/static_files/
         type: Directory
-    - name: input-vol
+    - name: input-data
       hostPath:
         path: /opt/datasets/seed_datasets_current/196_autoMpg
         type: Directory
-    - name: output-vol
+    - name: output-data
       persistentVolumeClaim:
         claimName: eval-output-pv-claim
