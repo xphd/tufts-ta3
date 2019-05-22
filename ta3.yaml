@@ -61,7 +61,7 @@ spec:
         memory: 56Gi
         cpu: 8
   - name: ta3-container
-    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/may2019:latest
+    image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:latest
     imagePullPolicy: Always
     command: [ "./ta3_search" ]
     args:
