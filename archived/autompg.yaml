@@ -60,8 +60,8 @@ spec:
           readOnly: true
       resources:
         requests:
-          memory: 25Gi
-          cpu: 6
+          memory: 10Gi
+          cpu: 4
       ports:
         - containerPort: 45042
           hostPort: 45042
@@ -85,7 +85,7 @@ spec:
       resources:
         requests:
           # that's what we've been testing on:
-          memory: 5Gi
+          memory: 2Gi
           cpu: 1
       env:
         - name: TA2_PORT
