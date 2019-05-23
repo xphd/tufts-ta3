@@ -96,7 +96,7 @@ spec:
   volumes:
     - name: input-data
       hostPath:
-        path: /opt/datasets/seed_datasets_current/uu6_hepatitis # todo replace me
+        path: /opt/datasets/seed_datasets_current/26_radon_seed # todo replace me
         type: Directory
     - name: static-data
       hostPath:
