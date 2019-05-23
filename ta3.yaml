@@ -16,92 +16,92 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
- name: tufts-ta3
- labels:
-   id: ta3 #note that this attribute must match spec.selector attribute of the service
+  name: tufts-ta3
+  labels:
+    id: ta3 #note that this attribute must match spec.selector attribute of the service
 spec:
   restartPolicy: Never
   containers:
-  - name: ta2-container
-    image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-v2019.4.4-image:latest #replace me    
-    env:
-    - name: D3MRUN
-      value: "ta2ta3"
-    - name: D3MINPUTDIR
-      value: "/input"
-    - name: D3MOUTPUTDIR
-      value: "/output"
-    - name: D3MSTATICDIR
-      value: "/static"
-    - name: D3MPROBLEMPATH
-      value: "/input/TRAIN/problem_TRAIN/problemDoc.json"
-    - name: D3MLOCALDIR
-      value: "/output/D3MLOCALDIR"
-    - name: D3MCPU
-      value: "8"
-    - name: D3MRAM
-      value: "56Gi"
-    - name: D3MTIMEOUT
-      value: "600"
-    - name: D3MCONTEXT
-      value: "EVALUATION"
-    volumeMounts:
-      - name: input-data
-        mountPath: /input
-        readOnly: true
-      - name: output-data
-        mountPath: /output
-        readOnly: false
-      - name: static-data
-        mountPath: /static
-        readOnly: true
-    resources:
-      requests:
-        memory: 10Gi
-        cpu: 4
-    ports:
-      - containerPort: 45042
-        hostPort: 45042
+    - name: ta2-container
+      image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-v2019.4.4-image:latest #replace me
+      env:
+        - name: D3MRUN
+          value: "ta2ta3"
+        - name: D3MINPUTDIR
+          value: "/input"
+        - name: D3MOUTPUTDIR
+          value: "/output"
+        - name: D3MSTATICDIR
+          value: "/static"
+        - name: D3MPROBLEMPATH
+          value: "/input/TRAIN/problem_TRAIN/problemDoc.json"
+        - name: D3MLOCALDIR
+          value: "/output/D3MLOCALDIR"
+        - name: D3MCPU
+          value: "8"
+        - name: D3MRAM
+          value: "56Gi"
+        - name: D3MTIMEOUT
+          value: "600"
+        - name: D3MCONTEXT
+          value: "EVALUATION"
+      volumeMounts:
+        - name: input-data
+          mountPath: /input
+          readOnly: true
+        - name: output-data
+          mountPath: /output
+          readOnly: false
+        - name: static-data
+          mountPath: /static
+          readOnly: true
+      resources:
+        requests:
+          memory: 10Gi
+          cpu: 4
+      ports:
+        - containerPort: 45042
+          hostPort: 45042
 
-  - name: ta3-container
-    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/may2019:latest
-    imagePullPolicy: Always
-    command: [ "./ta3_search" ]
-    args:
-      - dataset:__direct__
-    env:
-      - name: TA2_PORT
-        value: "45042"
-    volumeMounts:
-      - name: input-data
-        mountPath: /input
-        readOnly: true
-      - name: output-data
-        mountPath: /output
-        readOnly: false
-      - name: static-data
-        mountPath: /static
-        readOnly: true    
-    resources:
-      requests:
-        memory: 2Gi
-        cpu: 1
-    ports:
-      - name: http
-        containerPort: 8080
-#...[add more containers if needed] 
- 
+    - name: ta3-container
+      image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/may2019:latest
+      imagePullPolicy: Always
+      command: ["./ta3_search"]
+      args:
+        - dataset:__direct__
+      env:
+        - name: TA2_PORT
+          value: "45042"
+      volumeMounts:
+        - name: input-data
+          mountPath: /input
+          readOnly: true
+        - name: output-data
+          mountPath: /output
+          readOnly: false
+        - name: static-data
+          mountPath: /static
+          readOnly: true
+      resources:
+        requests:
+          memory: 2Gi
+          cpu: 1
+      ports:
+        - name: http
+          containerPort: 8080
+  #...[add more containers if needed]
+
   imagePullSecrets:
-  - name: regcred-cl
+    - name: regcred-cl
   volumes:
-  - name: input-data
-    hostPath:
-      path: /opt/datasets/seed_datasets_current/185_baseball # todo replace me
-      type: Directory
-  - name: static-data
-    hostPath:
-      path: /opt/static_files
-      type: Directory
-  - name: output-data
-    persistentVolumeClaim:
-      claimName: eval-output-pv-claim
+    - name: input-data
+      hostPath:
+        path: /opt/datasets/seed_datasets_current/26_radon_seed # todo replace me
+        type: Directory
+    - name: static-data
+      hostPath:
+        path: /opt/static_files
+        type: Directory
+    - name: output-data
+      persistentVolumeClaim:
+        claimName: eval-output-pv-claim
