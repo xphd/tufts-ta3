@@ -66,7 +66,7 @@ spec:
     - name: ta3-container
       image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/may2019:latest
       imagePullPolicy: Always
-      command: ["./ta3_search"]
+      command: [./ta3_search]
       args:
         - dataset:__direct__
       env:
