@@ -5,7 +5,7 @@ metadata:
   labels:
     app: tufts-baseball
 spec:
-  loadBalancerIP: 10.108.25.34
+  loadBalancerIP: 10.108.25.32
   type: LoadBalancer
   ports:
     - name: http
@@ -26,7 +26,7 @@ spec:
   containers:
     - name: isi-ta2
       imagePullPolicy: Always
-      image: registry.datadrivendiscovery.org/ta2-submissions/ta2-isi/ta3ta2/ta3ta2-image
+      image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-v2019.4.4-image
       env:
         - name: D3MRUN
           value: "ta2ta3"
@@ -66,13 +66,12 @@ spec:
     # TUFTS TA3
     - name: tufts-ta3
       imagePullPolicy: Always
-      image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:baseball
-      command:
-        [
-          ./ta3_search shared/static/config_files/dev_mode/example_dev_classification_config.json,
+      image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:cl-master
+      command: [
+          ./ta3_search, # shared/static/config_files/dev_mode/example_dev_classification_config.json,
         ]
-      # args:
-      #   - dataset:__direct__
+      args:
+        - dataset:__direct__
       volumeMounts:
         - name: input-vol
           mountPath: /input
