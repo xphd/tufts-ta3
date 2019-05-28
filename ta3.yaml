@@ -23,7 +23,7 @@ spec:
   restartPolicy: Never
   containers:
     - name: ta2-container
-      image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-v2019.4.4-image:latest #replace me
+      image: registry.datadrivendiscovery.org/ta2-submissions/ta2-isi/may2019:latest #replace me
       env:
         - name: D3MRUN
           value: "ta2ta3"
