@@ -66,9 +66,9 @@ spec:
       requests:
         memory: 10Gi
         cpu: 4
-        nvidia.com/gpu: 1
+        nvidia.com/gpu: 0
       limits:
-        nvidia.com/gpu: 1
+        nvidia.com/gpu: 0
   - name: tufts-ta3
     image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019#replace me
     imagePullPolicy: Always
