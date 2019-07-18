@@ -7,7 +7,7 @@ metadata:
     app: ta3-container #Name of ta3 container
 spec:
   type: LoadBalancer # Type of service. This should always be LoadBalancer.
-  loadBalancerIP: 10.108.25.32 # range of 10.108.25.1-10.108.30.254. If you use this, please mark your IP on Reserved IP section if you want your IP not to collide with someone else.
+  loadBalancerIP: 10.108.25.31 # range of 10.108.25.1-10.108.30.254. If you use this, please mark your IP on Reserved IP section if you want your IP not to collide with someone else.
   selector:
     app: ta3-container # This is where you define which container to link this service to. This must match the labels.app attribute of the pod you are trying to create the service for.
   ports:
@@ -70,7 +70,7 @@ spec:
       limits:
         nvidia.com/gpu: 0
   - name: tufts-ta3
-    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019#replace me
+    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019 #replace me
     imagePullPolicy: Always
     command: [ "./ta3_search" ]
     args:
