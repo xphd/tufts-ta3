@@ -74,7 +74,7 @@ spec:
     imagePullPolicy: Always
     command: [ "./ta3_search" ]
     args:
-        - dataset:__direct__
+        - static/local_testing_data/SEMI_1459_artificial_characters
     env:
       - name: TA2_PORT
         value: "45042"
