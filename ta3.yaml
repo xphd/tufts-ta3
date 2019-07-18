@@ -3,105 +3,111 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ta3-service # Name of the service. Could be anything.
+  labels:
+    app: ta3-container #Name of ta3 container
 spec:
   type: LoadBalancer # Type of service. This should always be LoadBalancer.
-  loadBalancerIP: 10.108.25.31 # an optional ip on 10.108.24.0/21 (range of 10.108.25.1-10.108.30.254). If you use this, please mark your IP on Reserved IP section if you want your IP not to collide with someone else.
+  loadBalancerIP: 10.108.25.30 # range of 10.108.25.1-10.108.30.254. If you use this, please mark your IP on Reserved IP section if you want your IP not to collide with someone else.
   selector:
-    id: ta3 # This is where you define which pod to link this service to. This must match the labels attribute of the pod you are trying to create the service for.
+    app: ta3-container # This is where you define which container to link this service to. This must match the labels.app attribute of the pod you are trying to create the service for.
   ports:
     - name: http
       port: 8080 #represents that service can be accessed by other services in the cluster at port 8080.
-      targetPort: 8080 # The targetPort is 80 which represents the service is actually running on port 80 on pods
+      protocol: TCP
+      targetPort: 8080 # The targetPort is 8080 which represents the service is actually running on port 8080 on pods
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tufts-ta3
-  labels:
-    id: ta3 #note that this attribute must match spec.selector attribute of the service
+ name: test-pod #can be anything
+ labels:
+   app: ta3-container #note that this attribute must match spec.selector attribute of the service
 spec:
   restartPolicy: Never
   containers:
-    - name: ta2-container
-      image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-v2019.4.4-image #replace me
-      env:
-        - name: D3MRUN
-          value: "ta2ta3"
-        - name: D3MINPUTDIR
-          value: "/input"
-        - name: D3MOUTPUTDIR
-          value: "/output"
-        - name: D3MSTATICDIR
-          value: "/static"
-        - name: D3MPROBLEMPATH
-          value: "/input/TRAIN/problem_TRAIN/problemDoc.json"
-        - name: D3MLOCALDIR
-          value: "/output/D3MLOCALDIR"
-        - name: D3MCPU
-          value: "8"
-        - name: D3MRAM
-          value: "56Gi"
-        - name: D3MTIMEOUT
-          value: "600"
-        - name: D3MCONTEXT
-          value: "EVALUATION"
-      volumeMounts:
-        - name: input-data
-          mountPath: /input
-          readOnly: true
-        - name: output-data
-          mountPath: /output
-          readOnly: false
-        - name: static-data
-          mountPath: /static
-          readOnly: true
-      resources:
-        requests:
-          memory: 10Gi
-          cpu: 4
-      ports:
-        - containerPort: 45042
-          hostPort: 45042
-
-    - name: ta3-container
-      image: registry.datadrivendiscovery.org/cliu/tuftsgtwiscta3:dry-run-may
-      imagePullPolicy: Always
-      command: ["./ta3_search"]
-      args:
+  - name: ta2-container
+    image: registry.datadrivendiscovery.org/ta2-submissions/ta2-sri/summer2019 #replace me
+    env:
+    - name: D3MRUN
+      value: "ta2"
+    - name: D3MINPUTDIR
+      value: "/input"
+    - name: D3MOUTPUTDIR
+      value: "/output"
+    - name: D3MSTATICDIR
+      value: "/static"
+    - name: D3MPROBLEMPATH
+      value: "/input/TRAIN/problem_TRAIN/problemDoc.json"
+    - name: D3MLOCALDIR
+      value: "/output/D3MLOCALDIR"
+    - name: D3MCPU
+      value: "8"
+    - name: D3MRAM
+      value: "56Gi"
+    - name: D3MTIMEOUT
+      value: "600"
+    - name: D3MCONTEXT
+      value: "TESTING"
+    - name: DATAMART_NYU_URL
+      value: "https://datamart.d3m.vida-nyu.org/"
+    - name: DATAMART_ISI_URL
+      value: "http://dsbox02.isi.edu:9000"
+    volumeMounts:
+      - name: input-data
+        mountPath: /input
+        readOnly: true
+      - name: output-data
+        mountPath: /output
+        readOnly: false
+      - name: static-data
+        mountPath: /static
+        readOnly: true
+    resources:
+      requests:
+        memory: 10Gi
+        cpu: 4
+        nvidia.com/gpu: 1
+      limits:
+        nvidia.com/gpu: 1
+  - name: tufts-ta3
+    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-yourteam/summer2019:latest #replace me
+    imagePullPolicy: Always
+    command: [ ""./ta3_search"" ]
+    args:
         - dataset:__direct__
-      env:
+    env:
         - name: TA2_PORT
           value: "45042"
-      volumeMounts:
-        - name: input-data
-          mountPath: /input
-          readOnly: true
-        - name: output-data
-          mountPath: /output
-          readOnly: false
-        - name: static-data
-          mountPath: /static
-          readOnly: true
-      resources:
-        requests:
-          memory: 2Gi
-          cpu: 1
-      ports:
-        - name: http
-          containerPort: 8080
-  #...[add more containers if needed]
-
+    volumeMounts:
+      - name: input-data
+        mountPath: /input
+        readOnly: true
+      - name: output-data
+        mountPath: /output
+        readOnly: false
+      - name: static-data
+        mountPath: /static
+        readOnly: true
+    ports:
+      - name: http
+        containerPort: 8080
+    resources:
+      requests:
+        memory: 2Gi
+        cpu: 2
+#...[add more containers if needed]
+ 
   imagePullSecrets:
-    - name: regcred-cl
+  - name: regcred-cl
   volumes:
-    - name: input-data
-      hostPath:
-        path: /opt/datasets/seed_datasets_current/26_radon_seed # todo replace me
-        type: Directory
-    - name: static-data
-      hostPath:
-        path: /opt/static_files
-        type: Directory
-    - name: output-data
-      persistentVolumeClaim:
-        claimName: eval-output-pv-claim
+  - name: input-data
+    hostPath:
+      path: /opt/datasets/seed_datasets_current/LL0_acled_reduced # todo replace me
+      type: Directory
+  - name: static-data
+    hostPath:
+      path: /opt/static_files
+      type: Directory
+  - name: output-data
+    persistentVolumeClaim:
+      claimName: eval-output-pv-claim
