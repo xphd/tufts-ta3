@@ -98,7 +98,7 @@ spec:
 #...[add more containers if needed]
  
   imagePullSecrets:
-  - name: regcred
+  - name: regcred-cl
   volumes:
   - name: input-data
     hostPath:
