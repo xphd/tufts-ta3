@@ -41,7 +41,7 @@ spec:
     - name: D3MLOCALDIR
       value: "/output/D3MLOCALDIR"
     - name: D3MCPU
-      value: "14"
+      value: "8"
     - name: D3MRAM
       value: "56Gi"
     - name: D3MTIMEOUT
@@ -64,8 +64,8 @@ spec:
         readOnly: true
     resources:
       requests:
-        memory: 56Gi
-        cpu: 14
+        memory: 10Gi
+        cpu: 4
         nvidia.com/gpu: 1
       limits:
         nvidia.com/gpu: 1
