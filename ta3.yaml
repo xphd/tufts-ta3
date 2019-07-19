@@ -41,9 +41,9 @@ spec:
     - name: D3MLOCALDIR
       value: "/output/D3MLOCALDIR"
     - name: D3MCPU
-      value: "14"
+      value: "8"
     - name: D3MRAM
-      value: "56Gi"
+      value: "32Gi"
     - name: D3MTIMEOUT
       value: "600"
     - name: D3MCONTEXT
@@ -64,9 +64,9 @@ spec:
       requests:
         memory: 56Gi
         cpu: 14
-        nvidia.com/gpu: 1
+        nvidia.com/gpu: 0
       limits:
-        nvidia.com/gpu: 1
+        nvidia.com/gpu: 0
   - name: tufts-ta3
     image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019:latest #replace me
     imagePullPolicy: Always
@@ -91,7 +91,7 @@ spec:
         containerPort: 8080
     resources:
       requests:
-        memory: 10Gi
+        memory: 8Gi
         cpu: 2
 #...[add more containers if needed]
  
