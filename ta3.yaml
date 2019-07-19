@@ -62,7 +62,7 @@ spec:
         readOnly: true
     resources:
       requests:
-        memory: 56Gi
+        memory: 32Gi
         cpu: 8
         nvidia.com/gpu: 0
       limits:
