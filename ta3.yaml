@@ -77,7 +77,7 @@ spec:
     imagePullPolicy: Always
     command: [./ta3_search]
     args:
-      - __direct__
+      - /input/seed_datasets_current/LL0_acled_reduced
     env:
       - name: TA2_PORT
         value: "45042"
@@ -105,7 +105,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced # todo replace me
+      path: /datasets/opt/datasets/ # todo replace me
       type: Directory
   - name: static-data
     hostPath:
