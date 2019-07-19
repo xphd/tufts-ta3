@@ -77,7 +77,7 @@ spec:
     imagePullPolicy: Always
     command: [ "./ta3_search" ]
     args:
-        - static/local_testing_data/SEMI_1459_artificial_characters
+        - __direct__
     volumeMounts:
       - name: input-data
         mountPath: /input
@@ -102,7 +102,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /opt/datasets/seed_datasets_current/26_radon_seed # todo replace me
+      path: /datasets/opt/datasets/seed_datasets_current/185_baseball # todo replace me
       type: Directory
   - name: static-data
     hostPath:
