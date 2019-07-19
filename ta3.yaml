@@ -77,7 +77,7 @@ spec:
     imagePullPolicy: Always
     command: [./ta3_search]
     args:
-      - static/local_testing_data/SEMI_1459_artificial_characters
+      - __direct__
     env:
       - name: TA2_PORT
         value: "45042"
@@ -105,7 +105,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation # todo replace me
+      path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced # todo replace me
       type: Directory
   - name: static-data
     hostPath:
