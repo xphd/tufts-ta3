@@ -70,14 +70,17 @@ spec:
       limits:
         nvidia.com/gpu: 0
     ports:
-        - containerPort: 45042
-          hostPort: 45042
+      - containerPort: 45042
+        hostPort: 45042
   - name: tufts-ta3
     image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019 #replace me
     imagePullPolicy: Always
     command: [ "./ta3_search" ]
     args:
-        - __direct__
+      - __direct__
+    env:
+      - name: TA2_PORT
+        value: "45042"
     volumeMounts:
       - name: input-data
         mountPath: /input
