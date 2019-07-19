@@ -75,7 +75,7 @@ spec:
   - name: tufts-ta3
     image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019 #replace me
     imagePullPolicy: Always
-    command: [ "./ta3_search" ]
+    command: [./ta3_search]
     args:
       - shared/static/local_testing_data/SEMI_1459_artificial_characters
     env:
