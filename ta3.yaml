@@ -73,7 +73,7 @@ spec:
       - containerPort: 45042
         hostPort: 45042
   - name: tufts-ta3
-    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019:dev_1 #replace me
+    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019:dev_2 #replace me
     imagePullPolicy: Always
     command: [./ta3_search]
     args:
