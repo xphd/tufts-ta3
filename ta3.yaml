@@ -68,7 +68,7 @@ spec:
       limits:
         nvidia.com/gpu: 0
   - name: tufts-ta3
-    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019:latest #replace me
+    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019:july22 #replace me
     imagePullPolicy: Always
     command: [./ta3_search]
     args:
@@ -76,6 +76,8 @@ spec:
     env:
       - name: TA2_PORT
         value: "45042"
+      - name: DATAMART_URL_NYU
+        value: "https://datamart.d3m.vida-nyu.org/"
     volumeMounts:
       - name: input-data
         mountPath: /input
