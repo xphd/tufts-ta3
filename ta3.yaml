@@ -26,7 +26,7 @@ spec:
   restartPolicy: Never
   containers:
   - name: ta2-container
-    image: registry.datadrivendiscovery.org/ta2-submissions/ta2-sri/summer2019:latest #replace me
+    image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-2019-summer:latest #replace me
     env:
     - name: D3MRUN
       value: "ta2"
@@ -72,7 +72,7 @@ spec:
     imagePullPolicy: Always
     command: [./ta3_search]
     args:
-      - /input/seed_datasets_current/LL0_acled_reduced
+      - /input/seed_datasets_data_augmentation/DA_poverty_estimation
     env:
       - name: TA2_PORT
         value: "45042"
