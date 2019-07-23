@@ -68,12 +68,16 @@ spec:
       limits:
         nvidia.com/gpu: 0
   - name: tufts-ta3
-    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019:july22 #replace me
+    image: registry.datadrivendiscovery.org/cliu/snowcat:latest #replace me
     imagePullPolicy: Always
     command: [./ta3_search]
-    args:
-      - /input/seed_datasets_data_augmentation/DA_poverty_estimation
+    # args:
+    #   - /input/seed_datasets_data_augmentation/DA_poverty_estimation
     env:
+      - name: D3MINPUTDIR
+        value: "/input"
+      - name: D3MOUTPUTDIR
+        value: "/output"
       - name: TA2_PORT
         value: "45042"
       - name: DATAMART_URL_NYU
@@ -102,7 +106,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /datasets/opt/datasets/ # todo replace me
+      path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation # todo replace me
       type: Directory
   - name: static-data
     hostPath:
