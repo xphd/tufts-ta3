@@ -41,7 +41,7 @@ spec:
     - name: D3MLOCALDIR
       value: "/output/D3MLOCALDIR"
     - name: D3MCPU
-      value: "8"
+      value: "5"
     - name: D3MRAM
       value: "32Gi"
     - name: D3MTIMEOUT
@@ -63,7 +63,7 @@ spec:
     resources:
       requests:
         memory: 32Gi
-        cpu: 8
+        cpu: 5
         nvidia.com/gpu: 0
       limits:
         nvidia.com/gpu: 0
@@ -98,7 +98,7 @@ spec:
     resources:
       requests:
         memory: 16Gi
-        cpu: 4
+        cpu: 2
 #...[add more containers if needed]
  
   imagePullSecrets:
