@@ -68,7 +68,7 @@ spec:
       limits:
         nvidia.com/gpu: 0
   - name: tufts-ta3
-    image: registry.datadrivendiscovery.org/cliu/snowcat:latest #replace me
+    image: registry.datadrivendiscovery.org/cliu/snowcat:git #replace me
     imagePullPolicy: Always
     command: [./ta3_search]
     # args:
