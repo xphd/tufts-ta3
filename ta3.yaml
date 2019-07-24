@@ -106,7 +106,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /datasets/opt/datasets/seed_datasets_current/LL1_VTXC_1369_synthetic # todo replace me
+      path: /datasets/opt/datasets/seed_datasets_current/SEMI_1217_click_prediction_small # todo replace me
       type: Directory
   - name: static-data
     hostPath:
