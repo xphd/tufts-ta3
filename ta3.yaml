@@ -97,8 +97,8 @@ spec:
         containerPort: 8080
     resources:
       requests:
-        memory: 8Gi
-        cpu: 2
+        memory: 16Gi
+        cpu: 4
 #...[add more containers if needed]
  
   imagePullSecrets:
@@ -106,7 +106,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation # todo replace me
+      path: /datasets/opt/datasets/seed_datasets_current/SEMI_155_pokerhand # todo replace me
       type: Directory
   - name: static-data
     hostPath:
