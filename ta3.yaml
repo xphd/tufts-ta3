@@ -106,10 +106,10 @@ spec:
   - name: regcred-cl
   volumes:
   - name: input-data
-    hostPath:
-      path: /datasets/opt/datasets/seed_datasets_current/DA_poverty_estimation
+    hostPath:      
       # path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced # todo replace me
       # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
+      path: /datasets/opt/datasets/seed_datasets_current/DA_poverty_estimation
       type: Directory
   - name: static-data
     hostPath:
