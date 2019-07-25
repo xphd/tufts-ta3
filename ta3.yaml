@@ -69,8 +69,7 @@ spec:
       limits:
         nvidia.com/gpu: 0
   - name: tufts-ta3
-    # image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019:latest #replace me
-    image: registry.datadrivendiscovery.org/cliu/snowcat:objectDetection
+    image: registry.datadrivendiscovery.org/ta3-submissions/ta3-tufts/summer2019:latest #replace me
     imagePullPolicy: Always
     command: [./ta3_search]
     env:
@@ -106,10 +105,10 @@ spec:
   volumes:
   - name: input-data
     hostPath:     
-      path: /datasets/opt/datasets/seed_datasets_current/LL1_penn_fudan_pedestrian # todo replace me 
+      # path: /datasets/opt/datasets/seed_datasets_current/LL1_penn_fudan_pedestrian # todo replace me 
       # path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced
       # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
-      # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation
+      path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation
       type: Directory
   - name: static-data
     hostPath:
