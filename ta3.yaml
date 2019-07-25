@@ -26,7 +26,7 @@ spec:
   restartPolicy: Never
   containers:
   - name: ta2-container
-    image: registry.datadrivendiscovery.org/ta2-submissions/ta2-sri/summer2019:latest #replace me
+    image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-2019-summer #replace me
     env:
     - name: D3MRUN
       value: "ta2"
@@ -106,7 +106,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt # todo replace me
+      path: /datasets/opt/datasets/seed_datasets_current/LL1_penn_fudan_pedestrian # todo replace me
       type: Directory
   - name: static-data
     hostPath:
