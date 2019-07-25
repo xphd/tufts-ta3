@@ -63,7 +63,7 @@ spec:
     resources:
       requests:
         memory: 32Gi
-        cpu: 8
+        cpu: 10
         nvidia.com/gpu: 0
       limits:
         nvidia.com/gpu: 0
@@ -106,7 +106,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_ny_taxi_demand # todo replace me
+      path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt # todo replace me
       type: Directory
   - name: static-data
     hostPath:
