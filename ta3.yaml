@@ -107,8 +107,9 @@ spec:
   volumes:
   - name: input-data
     hostPath:
+      path: /datasets/opt/datasets/seed_datasets_current/DA_poverty_estimation
       # path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced # todo replace me
-      path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
+      # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
       type: Directory
   - name: static-data
     hostPath:
