@@ -46,7 +46,7 @@ spec:
     - name: D3MRAM
       value: "32Gi"
     - name: D3MTIMEOUT
-      value: "600"
+      value: "6000"
     - name: D3MCONTEXT
       value: "TESTING"
     - name: DATAMART_URL_NYU
