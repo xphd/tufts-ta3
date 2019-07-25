@@ -106,7 +106,7 @@ spec:
   volumes:
   - name: input-data
     hostPath:
-      path: /datasets/opt/datasets/seed_datasets_current/LL1_736_population_spawn_simpler # todo replace me
+      path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt # todo replace me
       type: Directory
   - name: static-data
     hostPath:
