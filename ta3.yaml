@@ -26,8 +26,8 @@ spec:
   restartPolicy: Never
   containers:
   - name: ta2-container
-    image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-2019-summer:latest #replace me
-    # image: registry.datadrivendiscovery.org/ta2-submissions/ta2-sri/summer2019:latest
+    # image: registry.datadrivendiscovery.org/kyao/ta3ta2/ta3ta2-2019-summer:latest #replace me
+    image: registry.datadrivendiscovery.org/ta2-submissions/ta2-sri/summer2019:latest
     # image: registry.datadrivendiscovery.org/dhartnett/sri_ta2_20190404:latest
     env:
     - name: D3MRUN
@@ -107,8 +107,8 @@ spec:
   - name: input-data
     hostPath:     
       # path: /datasets/opt/datasets/seed_datasets_current/LL1_penn_fudan_pedestrian # todo replace me 
-      # path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced
-      path: /datasets/opt/datasets/seed_datasets_current/LL1_736_population_spawn_simpler
+      path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced
+      # path: /datasets/opt/datasets/seed_datasets_current/LL1_736_population_spawn_simpler
       # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
       # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation
       type: Directory
