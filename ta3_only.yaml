@@ -107,7 +107,7 @@ spec:
     - name: input-data
       hostPath:
         # path: /datasets/opt/datasets/seed_datasets_current/LL1_penn_fudan_pedestrian # todo replace me
-        # path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced
+        path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced
         # path: /datasets/opt/datasets/seed_datasets_current/LL1_736_population_spawn_simpler
         # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
         # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation
