@@ -76,8 +76,8 @@ spec:
       env:
         # - name: D3MINPUTDIR
         #   value: "/input"
-        - name: D3MOUTPUTDIR
-          value: "/output"
+        # - name: D3MOUTPUTDIR
+        #   value: "/output"
         - name: TA2_PORT
           value: "45042"
         - name: DATAMART_URL_NYU
