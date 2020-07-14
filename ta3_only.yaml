@@ -70,7 +70,7 @@ spec:
     #       limits:
     #         nvidia.com/gpu: 0
     - name: tufts-ta3
-      image: registry.datadrivendiscovery.org/cliu/snowcat:summer2020demodylan #replace me
+      image: registry.datadrivendiscovery.org/cliu/snowcat:summer2020demodylan2 #replace me
       imagePullPolicy: Always
       command: [./ta3_search]
       env:
