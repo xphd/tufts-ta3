@@ -1,0 +1,73 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ta3-summer20 # Name of the service. Could be anything.
+  labels:
+    app: ta3-container #Name of ta3 container
+spec:
+  type: LoadBalancer # Type of service. This should always be LoadBalancer.
+  loadBalancerIP: 10.108.25.34 # range of 10.108.25.1-10.108.30.254. If you use this, please mark your IP on Reserved IP section if you want your IP not to collide with someone else.
+  selector:
+    app: ta3-container # This is where you define which container to link this service to. This must match the labels.app attribute of the pod you are trying to create the service for.
+  ports:
+    - name: http
+      port: 8080 #represents that service can be accessed by other services in the cluster at port 8080.
+      protocol: TCP
+      targetPort: 8080 # The targetPort is 8080 which represents the service is actually running on port 8080 on pods
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ta3-pod-summer20 #can be anything
+  labels:
+    app: ta3-container #note that this attribute must match spec.selector attribute of the service
+spec:
+  restartPolicy: Never
+  containers:
+    - name: tufts-ta3
+      image: registry.datadrivendiscovery.org/cliu/snowcat:summer2020demodylan #replace me
+      imagePullPolicy: Always
+      command: [./ta3_search]
+      env:
+        # - name: D3MINPUTDIR
+        #   value: "/input"
+        # - name: D3MOUTPUTDIR
+        #   value: "/output"
+        - name: TA2_PORT
+          value: "45042"
+        - name: DATAMART_URL_NYU
+          value: "https://datamart.d3m.vida-nyu.org/"
+      volumeMounts:
+        - name: input-data
+          mountPath: /input
+          readOnly: true
+        - name: output-data
+          mountPath: /output
+          readOnly: false
+        - name: static-data
+          mountPath: /static
+          readOnly: true
+      ports:
+        - name: http
+          containerPort: 8080
+      resources:
+        requests:
+          memory: 16Gi
+          cpu: 4
+  #...[add more containers if needed]
+
+  imagePullSecrets:
+    - name: regcred-cl
+  volumes:
+    - name: input-data
+      hostPath:
+        path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
+        type: Directory
+    - name: static-data
+      hostPath:
+        path: /opt/static_files
+        type: Directory
+    - name: output-data
+      persistentVolumeClaim:
+        claimName: eval-output-pv-claim
