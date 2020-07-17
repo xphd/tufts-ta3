@@ -82,16 +82,16 @@ spec:
           value: "45042"
         - name: DATAMART_URL_NYU
           value: "https://datamart.d3m.vida-nyu.org/"
-      volumeMounts:
-        - name: input-data
-          mountPath: /input
-          readOnly: true
-        - name: output-data
-          mountPath: /output
-          readOnly: false
-        - name: static-data
-          mountPath: /static
-          readOnly: true
+      # volumeMounts:
+      #   - name: input-data
+      #     mountPath: /input
+      #     readOnly: true
+      #   - name: output-data
+      #     mountPath: /output
+      #     readOnly: false
+      #   - name: static-data
+      #     mountPath: /static
+      #     readOnly: true
       ports:
         - name: http
           containerPort: 8080
@@ -103,19 +103,19 @@ spec:
 
   imagePullSecrets:
     - name: regcred-cl
-  volumes:
-    - name: input-data
-      hostPath:
-        # path: /datasets/opt/datasets/seed_datasets_current/LL1_penn_fudan_pedestrian # todo replace me
-        # path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced
-        # path: /datasets/opt/datasets/seed_datasets_current/LL1_736_population_spawn_simpler
-        path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
-        # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation
-        type: Directory
-    - name: static-data
-      hostPath:
-        path: /opt/static_files
-        type: Directory
-    - name: output-data
-      persistentVolumeClaim:
-        claimName: eval-output-pv-claim
+  # volumes:
+  #   - name: input-data
+  #     hostPath:
+  #       # path: /datasets/opt/datasets/seed_datasets_current/LL1_penn_fudan_pedestrian # todo replace me
+  #       # path: /datasets/opt/datasets/seed_datasets_current/LL0_acled_reduced
+  #       # path: /datasets/opt/datasets/seed_datasets_current/LL1_736_population_spawn_simpler
+  #       path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_college_debt
+  #       # path: /datasets/opt/datasets/seed_datasets_data_augmentation/DA_poverty_estimation
+  #       type: Directory
+  #   - name: static-data
+  #     hostPath:
+  #       path: /opt/static_files
+  #       type: Directory
+  #   - name: output-data
+  #     persistentVolumeClaim:
+  #       claimName: eval-output-pv-claim
