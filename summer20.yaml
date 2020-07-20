@@ -77,11 +77,11 @@ spec:
   volumes:
     - name: input-data
       hostPath:
-        path: /d3m/datasets/datasets/seed_datasets_data_augmentation/DA_poverty_estimation
+        path: /d3m/datasets/seed_datasets_data_augmentation/DA_poverty_estimation
         type: Directory
     - name: static-data
       hostPath:
-        path: /opt/static_files/
+        path: /d3m/static-files
         type: Directory
     - name: output-data
       persistentVolumeClaim:
