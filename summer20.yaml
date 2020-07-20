@@ -5,7 +5,7 @@ metadata:
   labels:
     app: tufts-ta3
 spec:
-  loadBalancerIP: 10.108.25.32
+  loadBalancerIP: 10.108.34.41
   type: LoadBalancer
   ports:
     - name: http
