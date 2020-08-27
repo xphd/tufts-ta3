@@ -19,9 +19,9 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-name: starter-pod #can be anything
-labels:
-  app: starter-container #note that this attribute must match spec.selector attribute of the service
+  name: starter-pod #can be anything
+  labels:
+    app: starter-container #note that this attribute must match spec.selector attribute of the service
 spec:
   restartPolicy: Never
   containers:
