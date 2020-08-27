@@ -25,7 +25,7 @@ labels:
 spec:
   restartPolicy: Never
   containers:
-    - name: starter-container
+    - name: starter
       image: registry.datadrivendiscovery.org/cliu/starter:latest #replace me
       imagePullPolicy: Always
       command: [./start]
