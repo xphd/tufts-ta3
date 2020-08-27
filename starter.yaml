@@ -9,7 +9,7 @@ spec:
   type: LoadBalancer # Type of service. This should always be LoadBalancer.
   loadBalancerIP: 10.108.34.48 # range of 10.108.34.40-49. If you use this, please mark your IP on Reserved IP section if you want your IP not to collide with someone else.
   selector:
-    app: ta3-container # This is where you define which container to link this service to. This must match the labels.app attribute of the pod you are trying to create the service for.
+    app: starter-container # This is where you define which container to link this service to. This must match the labels.app attribute of the pod you are trying to create the service for.
   ports:
     - name: http
       port: 8080 #represents that service can be accessed by other services in the cluster at port 8080.
@@ -21,7 +21,7 @@ kind: Pod
 metadata:
 name: starter-pod #can be anything
 labels:
-  app: ta3-container #note that this attribute must match spec.selector attribute of the service
+  app: starter-container #note that this attribute must match spec.selector attribute of the service
 spec:
   restartPolicy: Never
   containers:
