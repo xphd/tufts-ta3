@@ -28,7 +28,7 @@ spec:
     - name: starter
       image: registry.datadrivendiscovery.org/cliu/starter:latest #replace me
       imagePullPolicy: Always
-      command: [./start.sh]
+      command: [./start]
       ports:
         - name: http
           containerPort: 8080
