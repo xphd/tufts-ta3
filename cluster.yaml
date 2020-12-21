@@ -12,9 +12,9 @@ spec:
     app: starter-container # This is where you define which container to link this service to. This must match the labels.app attribute of the pod you are trying to create the service for.
   ports:
     - name: http
-      port: 8080 #represents that service can be accessed by other services in the cluster at port 8080.
+      port: 9090 #represents that service can be accessed by other services in the cluster at port 8080.
       protocol: TCP
-      targetPort: 8080 # The targetPort is 8080 which represents the service is actually running on port 8080 on pods
+      targetPort: 9090 # The targetPort is 8080 which represents the service is actually running on port 8080 on pods
 ---
 apiVersion: v1
 kind: Pod
@@ -31,7 +31,7 @@ spec:
       # command: [./start.sh]
       ports:
         - name: http
-          containerPort: 8080
+          containerPort: 9090
       resources:
         requests:
           memory: 2Gi
