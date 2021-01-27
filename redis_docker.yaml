@@ -2,14 +2,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: starter-service # Name of the service. Could be anything.
+  name: auger-redis-service # Name of the service. Could be anything.
   labels:
-    app: starter-container #Name of ta3 container
+    app: ta3-container #Name of ta3 container
 spec:
   type: LoadBalancer # Type of service. This should always be LoadBalancer.
   loadBalancerIP: 10.108.34.45 # range of 10.108.34.40-49. If you use this, please mark your IP on Reserved IP section if you want your IP not to collide with someone else.
   selector:
-    app: starter-container # This is where you define which container to link this service to. This must match the labels.app attribute of the pod you are trying to create the service for.
+    app: ta3-container # This is where you define which container to link this service to. This must match the labels.app attribute of the pod you are trying to create the service for.
   ports:
     - name: http
       port: 9090 #represents that service can be accessed by other services in the cluster at port 8080.
@@ -19,23 +19,23 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: starter-pod #can be anything
+  name: auger-redis-pod #can be anything
   labels:
-    app: starter-container #note that this attribute must match spec.selector attribute of the service
+    app: ta3-container #note that this attribute must match spec.selector attribute of the service
 spec:
   restartPolicy: Never
   containers:
-    - name: starter
-      image: registry.datadrivendiscovery.org/cliu/starter:cluster #replace me
+    - name: redis-docker
+      image: registry.datadrivendiscovery.org/cliu/redis:docker
       imagePullPolicy: Always
-      # command: [./start.sh]
+      # command: [./ta3_search]
       ports:
         - name: http
           containerPort: 9090
       resources:
         requests:
-          memory: 2Gi
-          cpu: 2
+          memory: 4Gi
+          cpu: 4
   #...[add more containers if needed]
 
   imagePullSecrets:
