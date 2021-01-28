@@ -26,7 +26,7 @@ spec:
   restartPolicy: Never
   containers:
     - name: redis-test
-      image: registry.datadrivendiscovery.org/cliu/auger
+      image: registry.datadrivendiscovery.org/cliu/auger:redis-test
       imagePullPolicy: Always
       # command: [./ta3_search]
       ports:
