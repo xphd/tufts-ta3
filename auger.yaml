@@ -26,14 +26,10 @@ spec:
   restartPolicy: Never
   containers:
     - name: tufts-ta3
-      image: registry.datadrivendiscovery.org/cliu/snowcat:summer2020demodylan2 #replace me
+      # image: registry.datadrivendiscovery.org/cliu/snowcat:summer2020demodylan2 #replace me
+      image: registry.datadrivendiscovery.org/cliu/auger:redis-test
       imagePullPolicy: Always
-      command: [./ta3_search]
-      env:
-        - name: TA2_PORT
-          value: "45042"
-        - name: DATAMART_URL_NYU
-          value: "https://datamart.d3m.vida-nyu.org/"
+      # command: [./ta3_search]
       ports:
         - name: http
           containerPort: 8080
